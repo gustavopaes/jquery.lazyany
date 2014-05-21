@@ -1,0 +1,13 @@
+{
+  "name": "jquery.lazyany",
+  "version": "0.1.3",
+  "description": "Permite o carregamento atrasado de qualquer elemento.",
+  "author": "Gustavo Paes <gpaes@uolinc.com>",
+  "devDependencies": {
+    "gulp": ">=3.5.5",
+    "gulp-uglify": ">=0.2.1",
+    "gulp-jshint": ">=1.5.0",
+    "jshint-stylish": "~0.1.5",
+    "map-stream": "~0.1.0"
+  }
+}

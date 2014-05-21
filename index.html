@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>lazyany</title>
+
+  <style type="text/css">
+  .ilha {
+    min-height: 400px;
+  }
+
+  .ilha.loaded {
+    background: green;
+  }
+
+  .footer.show {
+    background: red;
+  }
+  </style>
+
+  <script type="text/javascript" src="http://jsuol.com/c/jquery/jquery.js"></script>
+  <script type="text/javascript" src="src/jquery.lazyany.js"></script>
+  <script type="text/javascript">
+  $(function() {
+
+    // carrega as ilhas
+    $('.ilha').lazyany(function(el) {
+      $(el).addClass('loaded');
+    });
+
+    $('.footer').lazyany({ offset: 100, callback: function(el) {
+      $(el).addClass('show');
+    } });
+
+    $('.lazyload').lazyany({
+      offset: 100,
+      plugin: 'image'
+    })
+
+  });
+  </script>
+</head>
+<body>
+
+  <div class="ilha">
+    <h1>Ilha 1</h1>
+  </div>
+
+  <div class="ilha">
+    <h1>Ilha 2</h1>
+  </div>
+
+  <div class="ilha">
+    <h1>Ilha 3</h1>
+  </div>
+
+  <div class="ilha">
+    <h1>Ilha 4</h1>
+  </div>
+
+  <div class="footer">
+    <h1>Footer</h1>
+  </div>
+
+  <img src="" data-original="http://h.imguol.com/1403/06cris-z.jpg" class="lazyload">
+
+</body>
+</html>
