@@ -12,6 +12,9 @@
   /**
    * Verifica se o elemento está visível na
    * viewport do navegador.
+   * 
+   * Based on original echo lazy-loading script:
+   * https://github.com/toddmotto/echo
    *
    * @param {DOMElement} el Elemento DOM que será verificado
    * @return {Boolean}
