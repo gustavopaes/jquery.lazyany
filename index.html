@@ -10,6 +10,17 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="javascripts/vendor/jquery.lazyany/jquery.lazyany.js"></script>
+    <script type="text/javascript">
+    jQuery(function() {
+      $('img.lazyany').lazyany({
+        offset: 100,
+        plugin: 'image'
+      });
+    });
+    </script>
+
     <title>Jquery.lazyany by gustavopaes</title>
   </head>
 
@@ -31,38 +42,59 @@
         <hr>
 
         <section id="main_content">
-          <h1>
-<a name="jquerylazyany" class="anchor" href="#jquerylazyany"><span class="octicon octicon-link"></span></a>jquery.lazyany</h1>
+          <h1><a name="jquerylazyany" class="anchor" href="#jquerylazyany"><span class="octicon octicon-link"></span></a>jquery.lazyany</h1>
 
-<p>Permite o carregamento atrasado de qualquer elemento.</p>
+          <p>Com o <strong>jquery.lazyany</strong> é possível atrasar o carregamento de qualquer elemento da página, permitindo que se carregue apenas o que o usuário de fato está vendo.</p>
 
-<h2>
-<a name="exemplos" class="anchor" href="#exemplos"><span class="octicon octicon-link"></span></a>Exemplos</h2>
+          <h2><a name="exemplos" class="anchor" href="#exemplos"><span class="octicon octicon-link"></span></a>Exemplo</h2>
 
-<pre><code>$('p').lazyany(function(el) {
-  $(el).css({ backgroundColor: 'green' });
-});
-
-// Faz ajax apenas quando o módulo estiver para ser exibido
-// (300px abaixo do viewport)
-$('.noticias').lazyany({
-  offset: 300,
-  callback: function(el) {
-    $.ajax({
-      url: 'news.php',
-      success: function(news) { $(el).html(news) }
-    });
-  }
-});
+          <pre><code>$('.selector').lazyany(function(el) {
+  // do anything whith $(el)
+});</code></pre>
 
 
-// Usando plugin de lazyload de imagem
-// &lt;img data-original="http://gustavopaes.net/exemplo.jpg" class="lazyload"&gt;
-$('img.lazyload').lazyany({
-  offset: 100,
-  plugin: 'image'
-});
-</code></pre>
+          <h2><a name="exemplos" class="anchor" href="#exemplos"><span class="octicon octicon-link"></span></a>API</h2>
+
+          <h3><a name="callback" class="anchor" href="#callback">selector.lazyany(&lt;Function&gt;)</a></h3>
+          <p>Executa a função passada como parâmetro quando o(s) elemento(s) do <em>selector</em> aparecerem na tela.</p>
+          <p>A função recebe como parâmetro o elemento que está aparecendo na tela.</p>
+
+          <pre><code>$('img').lazyany(function(img) {
+  img.style.display = 'block';
+});</code></pre>
+
+          <h3>selector.lazyany('destroy')</h3>
+          <p>Remove o registro de lazyload nos elementos, dessa forma o callback não será mais disparado quando o elemento entrar no <em>viewport</em> do usuário.</p>
+
+          <h3>selector.lazyany(&lt;Object&gt;)</h3>
+          <p>É possível passar alguns parâmetros de configuração para o <strong>lazyany</strong>.</p>
+
+          <h4><a name="param_offset" class="anchor black" href="#param_offset">&lt;Int&gt; offset</a></h4>
+          <p>Distância, em <em>pixels</em>, antes do elemento ser exibido, mas que o callback é executado.</p>
+
+          <pre><code>$('img').lazyany({ offset: 300 }, function(img) { ... });</code></pre>
+
+          <h4><a name="param_callback" class="anchor black" href="#param_callback">&lt;Function&gt; callback</a></h4>
+          <p>A <a href="#callback">função callback</a> pode ser passada pelo objeto de configuração ou como parâmetro.</p>
+
+          <pre><code>$('img').lazyany({ offset: 300, callback: function(img) { ... } });</code></pre>
+
+          <p>O parâmetro <em>callback</em> será ignorado se ele for enviado junto com o <a href="#param_plugin"><em>plugin</em></a></p>
+
+          <h4><a name="param_plugin" class="anchor black" href="#param_plugin">&lt;String&gt; plugin</a></h4>
+          <p>Plugin é uma forma de facilitar e centralizar tarefas simples e recorrentes, como por exemplo, lazyload de imagens.</p>
+
+          <pre><code>$('img').lazyany({ offset: 300, plugin: 'image' });</code></pre>
+
+          <p>Para registrar um plugin:</p>
+
+          <pre><code>$.fn.lazyany.plugins.pluginName = function(el) { ... }</code></pre>
+
+          <p>O plugin <em>image</em> já vem registrado. Para funcionar, a <code>tag img</code> deve possuir o atributo <code>data-original</code>:</p>
+
+          <pre><code>&lt;img data-original="http://upload.wikimedia.org/wikipedia/commons/8/81/Sky_over_Washington_Monument.JPG" class="lazyany" width="620" height="465" title="Original uploader was Andypham3000 at en.wikipedia"&gt;</code></pre>
+          <img data-original="images/Sky_over_Washington_Monument.JPG" class="lazyany" width="620" height="465" title="Original uploader was Andypham3000 at en.wikipedia">
+
         </section>
 
         <footer>

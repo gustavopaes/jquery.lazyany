@@ -63,6 +63,10 @@ a:hover {
   color: #c5000c;
 }
 
+a.black {
+  color: #000000;
+}
+
 header {
   padding-top: 35px;
   padding-bottom: 25px;
